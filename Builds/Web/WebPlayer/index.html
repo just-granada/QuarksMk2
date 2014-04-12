@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>QUARKS - UNITY</title>
+		<link rel="icon" 
+	      type="image/png" 
+	      href="http://dantadigital.com/Quarks/favicon.png">
+		<script type="text/javascript" src="http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject.js"></script>
+		<script type="text/javascript">
+		<!--
+		function GetUnity() {
+			if (typeof unityObject != "undefined") {
+				return unityObject.getObjectById("unityPlayer");
+			}
+			return null;
+		}
+		if (typeof unityObject != "undefined") {
+			unityObject.embedUnity("unityPlayer", "Quarks.unity3d", 960, 600);
+			
+		}
+		-->
+		</script>
+		<style type="text/css">
+		<!--
+		body {
+			font-family: Helvetica, Verdana, Arial, sans-serif;
+			background-color: black;
+			color: white;
+			text-align: center;
+		}
+		a:link, a:visited {
+			color: #bfbfbf;
+		}
+		a:active, a:hover {
+			color: #bfbfbf;
+		}
+		p.header {
+			font-size: small;
+		}
+		p.header span {
+			font-weight: bold;
+		}
+		p.footer {
+			font-size: x-small;
+		}
+		div.content {
+			margin: auto;
+			width: 960px;
+		}
+		div.missing {
+			margin: auto;
+			position: relative;
+			top: 50%;
+			width: 193px;
+		}
+		div.missing a {
+			height: 63px;
+			position: relative;
+			top: -31px;
+		}
+		div.missing img {
+			border-width: 0px;
+		}
+		div#unityPlayer {
+			cursor: default;
+			height: 600px;
+			width: 960px;
+		}
+		h1
+		{
+			font-size: 30px;
+			text-align: center;
+			font-style: italic;
+			margin: 0;
+		}
+		.notes
+		{
+			width: 640px;
+			margin: 10px auto;
+			text-align: left;
+			font-size: 12px;
+		}
+		ul
+		{
+			padding: 0;
+		}
+		-->
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div id="unityPlayer">
+				<div class="missing">
+					<a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+						<img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+					</a>
+				</div>
+			</div>
+		</div>
+		<p class="footer">&laquo; created with <a href="http://unity3d.com/unity/" title="Go to unity3d.com">Unity</a> &raquo;</p>
+		<div class="notes">
+			<h2>Descripcion</h2>
+			<p>
+				Quarks es un juego de Puzzle / Accion pensado para dispositivos tactiles y dirigido a una audiencia casual. El objetivo del juego es crear cadenas o combos de Quarks del mismo color, con la restriccion que cada nueva pieza añadida al combo tiene que estar en linea vertical o horizontal con la ultima pieza tocada. Hay un limite de tiempo para tocar la siguiente pieza y este tiempo disminuye entre mas largo sea el combo, de tal manera que hacer combos de mayor longitud es cada vez mas dificil. El tiempo total de juego empieza en 40 segundos pero aumenta un poco con cada combo, proporcionalmente al valor del puntaje del combo. La finalidad es hacer el mayor puntaje posible antes que el tiempo llegue a 0.
+			</p>
+			<h2>Notas</h2>
+			<ul>
+				<li>
+					<p>El puntaje de cada combo va subiendo exponencialmente a medida que crece en longitud premiando los combos mas largos.</p>
+				</li>
+				<li>
+					<p>Un multiplicador va aumentando con cada nuevo combo que se hace sin cometer errores, multiplicando el valor total de cada nuevo combo, de tal manera que el jugador debe balancear entre hacer combos rapido pero sin arriesgarse mucho para no perder el multiplicador</p>
+				</li>
+				<li>
+					<p>El tiempo limite total le da al jugador una sensacion de urgencia y el tiempo extra otorgado por cada combo lo empuja a tratar de hacer combos rapido para ganar tiempo adicional</p>
+				</li>
+				<li>
+					<p>Una tabla de puntajes global, asi como un sistema de estadisticas y achievements basados en la longitud maxima del combo, el maximo multiplicador, etc. le proveeran a los jugadores un incentivo para seguir jugando y compitiendo consigo mismos y con sus amigos</p>
+				</li>
+				<li>
+					<p>
+						las burbujas grises del fondo siguen un patron de movimiento browniano suave para darle dinamismo al fondo del juego sin ser un elemento de distraccion.
+					</p>
+				</li>
+				<li>
+					<p>Tengo pensado agregar piezas especiales que permitan congelar el tiempo, convertir todas las piezas del mismo color por un tiempo limitado, crear una pieza que otorgue puntaje por el numero total de taps que reciba, y otras que multipliquen el valor del combo en que se incluyan. La mayoria de estas piezas especiales se activarian al incluirlas en un combo</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

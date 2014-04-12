@@ -1,0 +1,118 @@
+<sequence maintempo="220" measureAmount="36" currentTrack="0" beatResolution="960" internalName="" fileFormatVersion="2,000000" channelManagement="auto" metronome="false">
+
+<view xscroll="0,000000" yscroll="0" zoom="33"/>
+<measure  firstMeasure="0" denom="4" num="4"/>
+
+<tempo>
+</tempo>
+<copyright></copyright>
+
+<track name="Untitled" channel="0">
+<key sharps="0" flats="0"/>
+<key type="C" />
+<editor mode="0" height="113" g_clef="true" f_clef="true"/>
+<magneticgrid divider="32" triplet="false"/>
+<instrument id="9"/>
+<drumkit id="0"/>
+<guitartuning  string0="67" string1="72" string2="76" string3="81" string4="86" string5="91"/>
+
+<note pitch="71" start="0" end="960" volume="80" selected="true"/>
+<note pitch="69" start="3840" end="4800" volume="80"/>
+<note pitch="66" start="7680" end="8640" volume="80"/>
+<note pitch="64" start="11520" end="12480" volume="80"/>
+<note pitch="61" start="15360" end="16320" volume="80"/>
+<note pitch="61" start="19200" end="20160" volume="80" fret="3" string="0"/>
+<note pitch="59" start="19320" end="20280" volume="80" fret="6" string="0"/>
+<note pitch="71" start="23040" end="24000" volume="80" fret="1" string="1"/>
+<note pitch="69" start="23160" end="24120" volume="80" fret="3" string="1"/>
+<note pitch="66" start="23280" end="24240" volume="80" fret="1" string="0"/>
+<note pitch="71" start="26880" end="27840" volume="80" fret="1" string="1"/>
+<note pitch="69" start="27000" end="27960" volume="80" fret="3" string="1"/>
+<note pitch="66" start="27120" end="28080" volume="80" fret="1" string="0"/>
+<note pitch="64" start="27240" end="28200" volume="80" fret="3" string="0"/>
+<note pitch="71" start="30720" end="31680" volume="80" fret="1" string="1"/>
+<note pitch="69" start="30840" end="31800" volume="80" fret="3" string="1"/>
+<note pitch="66" start="30960" end="31920" volume="80" fret="1" string="0"/>
+<note pitch="64" start="31080" end="32040" volume="80" fret="3" string="0"/>
+<note pitch="61" start="31200" end="32160" volume="80" fret="6" string="0"/>
+</track>
+
+
+<track name="Untitled" channel="0" muted="true">
+<key sharps="0" flats="0"/>
+<key type="C" />
+<editor mode="3" height="128" g_clef="true" f_clef="true"/>
+<magneticgrid divider="8" triplet="false"/>
+<instrument id="0"/>
+<drumkit id="0"/>
+<guitartuning  string0="67" string1="72" string2="76" string3="81" string4="86" string5="91"/>
+
+<note pitch="36" start="0" end="31" volume="80"/>
+<note pitch="36" start="7680" end="7711" volume="80"/>
+<note pitch="36" start="11520" end="11551" volume="80"/>
+<note pitch="36" start="15360" end="15391" volume="80"/>
+<note pitch="36" start="19200" end="19231" volume="80"/>
+<note pitch="36" start="23040" end="23071" volume="80"/>
+<note pitch="36" start="26880" end="26911" volume="80"/>
+<note pitch="36" start="30720" end="30751" volume="80" selected="true"/>
+<note pitch="36" start="32640" end="32671" volume="80" selected="true"/>
+<note pitch="36" start="34560" end="34591" volume="80"/>
+<note pitch="36" start="36480" end="36511" volume="80"/>
+<note pitch="36" start="38400" end="38431" volume="80"/>
+<note pitch="36" start="40320" end="40351" volume="80"/>
+<note pitch="36" start="42240" end="42271" volume="80"/>
+<note pitch="36" start="44160" end="44191" volume="80"/>
+<note pitch="36" start="46080" end="46111" volume="80"/>
+<note pitch="37" start="47040" end="47071" volume="80"/>
+<note pitch="36" start="48000" end="48031" volume="80"/>
+<note pitch="36" start="49920" end="49951" volume="80"/>
+<note pitch="37" start="50880" end="50911" volume="80"/>
+<note pitch="36" start="51840" end="51871" volume="80"/>
+<note pitch="36" start="52800" end="52831" volume="80"/>
+<note pitch="37" start="54720" end="54751" volume="80"/>
+<note pitch="36" start="55680" end="55711" volume="80"/>
+<note pitch="37" start="56640" end="56671" volume="80"/>
+<note pitch="36" start="57600" end="57631" volume="80"/>
+<note pitch="36" start="59520" end="59551" volume="80"/>
+<note pitch="37" start="60480" end="60511" volume="80"/>
+<note pitch="36" start="61440" end="61471" volume="80"/>
+<note pitch="36" start="62400" end="62431" volume="80"/>
+<note pitch="37" start="63360" end="63391" volume="80"/>
+</track>
+
+
+<track name="Untitled" channel="0" muted="true">
+<key sharps="0" flats="0"/>
+<key type="C" />
+<editor mode="0" height="257" g_clef="true" f_clef="true"/>
+<magneticgrid divider="2" triplet="false"/>
+<instrument id="54"/>
+<drumkit id="0"/>
+<guitartuning  string0="67" string1="72" string2="76" string3="81" string4="86" string5="91"/>
+
+<note pitch="83" start="0" end="1920" volume="80"/>
+<note pitch="83" start="7680" end="9600" volume="80"/>
+<note pitch="87" start="15360" end="17280" volume="80"/>
+<note pitch="87" start="23040" end="24960" volume="80"/>
+<note pitch="83" start="30720" end="32640" volume="80" selected="true"/>
+<note pitch="83" start="38400" end="40320" volume="80"/>
+<note pitch="80" start="42240" end="44160" volume="80"/>
+<note pitch="87" start="46080" end="48000" volume="80"/>
+<note pitch="87" start="53760" end="55680" volume="80"/>
+<note pitch="88" start="57600" end="59520" volume="80"/>
+<note pitch="83" start="61440" end="63360" volume="80"/>
+<note pitch="83" start="69120" end="71040" volume="80"/>
+<note pitch="80" start="72960" end="74880" volume="80"/>
+<note pitch="87" start="76800" end="78720" volume="80"/>
+<note pitch="87" start="84480" end="86400" volume="80"/>
+<note pitch="85" start="88320" end="90240" volume="80"/>
+<note pitch="83" start="92160" end="94080" volume="80"/>
+<note pitch="80" start="99840" end="101760" volume="80"/>
+<note pitch="78" start="103680" end="105600" volume="80"/>
+<note pitch="87" start="107520" end="109440" volume="80"/>
+<note pitch="87" start="115200" end="117120" volume="80"/>
+<note pitch="88" start="119040" end="120960" volume="80"/>
+<note pitch="83" start="122880" end="124800" volume="80"/>
+</track>
+
+</sequence>
