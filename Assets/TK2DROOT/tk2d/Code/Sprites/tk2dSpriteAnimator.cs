@@ -124,8 +124,11 @@ public class tk2dSpriteAnimator : MonoBehaviour
 			Play(DefaultClip);
 		}
 	}
-	
-	[SerializeField] protected tk2dBaseSprite _sprite = null;
+
+	protected tk2dBaseSprite _sprite = null;
+	/// <summary>
+	/// Gets the sprite the animator is currently animating
+	/// </summary>
 	virtual public tk2dBaseSprite Sprite {
 		get {
 			if (_sprite == null) {
@@ -170,12 +173,16 @@ public class tk2dSpriteAnimator : MonoBehaviour
 
 #region Play
 	/// <summary>
-	/// Play the default clip.
+	/// Play the current / last played clip. If no clip has been played, the default clip is used.
 	/// Will not restart the clip if it is already playing.
 	/// </summary>
 	public void Play()
 	{
-		Play(DefaultClip);
+		if (currentClip == null) {
+			currentClip = DefaultClip;
+		}
+
+		Play(currentClip);
 	}
 
 	/// <summary>
@@ -198,6 +205,20 @@ public class tk2dSpriteAnimator : MonoBehaviour
 		Play(clip, 0, DefaultFps);
 	}
 	
+#region PlayFromFrame
+	/// <summary>
+	/// Play the current / last played clip. If no clip has been played, the default clip is used.
+	/// Will restart the clip at frame if called while the clip is playing.
+	/// </summary>
+	public void PlayFromFrame(int frame)
+	{
+		if (currentClip == null) {
+			currentClip = DefaultClip;
+		}
+
+		PlayFromFrame(currentClip, frame);
+	}
+
 	/// <summary>
 	/// Play the specified clip, starting at the frame specified.
 	/// Will restart the clip at frame if called while the clip is playing.
@@ -218,6 +239,21 @@ public class tk2dSpriteAnimator : MonoBehaviour
 	public void PlayFromFrame(tk2dSpriteAnimationClip clip, int frame)
 	{
 		PlayFrom(clip, (frame + 0.001f) / clip.fps); // offset ever so slightly to round down correctly
+	}
+#endregion
+
+#region PlayFrom
+	/// <summary>
+	/// Play the current / last played clip. If no clip has been played, the default clip is used.
+	/// Will restart the clip at frame if called while the clip is playing.
+	/// </summary>
+	public void PlayFrom(float clipStartTime)
+	{
+		if (currentClip == null) {
+			currentClip = DefaultClip;
+		}
+
+		PlayFrom(currentClip, clipStartTime);
 	}
 
 	/// <summary>
@@ -247,6 +283,7 @@ public class tk2dSpriteAnimator : MonoBehaviour
 	{
 		Play(clip, clipStartTime, DefaultFps);
 	}
+#endregion
 
 	/// <summary>
 	/// Play the clip specified by identifier.
@@ -507,11 +544,15 @@ public class tk2dSpriteAnimator : MonoBehaviour
 				}
 				
 				case tk2dSpriteAnimationClip.WrapMode.PingPong: {
-					int currFrame = (int)clipTime % (currentClip.frames.Length + currentClip.frames.Length - 2);
+					int currFrame = (currentClip.frames.Length > 1) ? ((int)clipTime % (currentClip.frames.Length + currentClip.frames.Length - 2)) : 0;
 					if (currFrame >= currentClip.frames.Length) {
 						currFrame = 2 * currentClip.frames.Length - 2 - currFrame;
 					}
 					return currFrame;
+				}
+
+				case tk2dSpriteAnimationClip.WrapMode.Single: {
+					return 0;
 				}
 
 				default: {
@@ -593,7 +634,7 @@ public class tk2dSpriteAnimator : MonoBehaviour
 
 			case tk2dSpriteAnimationClip.WrapMode.PingPong:
 			{
-				int currFrame = (int)clipTime % (currentClip.frames.Length + currentClip.frames.Length - 2);
+				int currFrame = (currentClip.frames.Length > 1) ? ((int)clipTime % (currentClip.frames.Length + currentClip.frames.Length - 2)) : 0;
 				int dir = 1;
 				if (currFrame >= currentClip.frames.Length)
 				{
@@ -666,8 +707,11 @@ public class tk2dSpriteAnimator : MonoBehaviour
 	
 	void ProcessEvents(int start, int last, int direction)
 	{
-		if (AnimationEventTriggered == null || start == last) 
+		if (AnimationEventTriggered == null || start == last 
+			|| Mathf.Sign(last - start) != Mathf.Sign(direction)) {
 			return;
+		}
+
 		int end = last + direction;
 		var frames = currentClip.frames;
 		for (int frame = start + direction; frame != end; frame += direction)
@@ -686,7 +730,7 @@ public class tk2dSpriteAnimator : MonoBehaviour
 		}
 	}
 	
-	void LateUpdate() 
+	public virtual void LateUpdate() 
 	{
 		UpdateAnimation(Time.deltaTime);
 	}
@@ -717,9 +761,14 @@ public class tk2dSpriteAnimator : MonoBehaviour
 				case tk2dSpriteAnimationClip.WrapMode.PingPong:
 				{
 					int t = currentClip.frames.Length * 2 - 2;
-					float f = ((clipTime - 0.5f) % t);
-					f = (f > t * 0.5f) ? (t - f) : f;
-					return f + 0.5f;
+					if (t == 0) {
+						return 0;
+					}
+					else {
+						float f = ((clipTime - 0.5f) % t);
+						f = (f > t * 0.5f) ? (t - f) : f;
+						return f + 0.5f;
+					}
 				}
 			}
 			return clipTime % currentClip.frames.Length;

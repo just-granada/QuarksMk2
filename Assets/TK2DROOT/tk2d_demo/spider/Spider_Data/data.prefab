@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d546f34a90531a14eaba82a43b05b86b, type: 1}
   m_Name: 
   version: 3
-  materialIdsValid: 0
+  materialIdsValid: 1
+  needMaterialInstance: 0
   spriteDefinitions:
   - name: body
     boundsData:
-    - {x: .00156249106, y: 0, z: -.000500000024}
-    - {x: .453125, y: .793749988, z: .00100000005}
+    - {x: .00156249106, y: 0, z: 0}
+    - {x: .453125, y: .793749988, z: 0}
     untrimmedBoundsData:
     - {x: .00156249106, y: 0, z: 0}
     - {x: .453125, y: .793749988, z: 0}
@@ -58,7 +59,7 @@ MonoBehaviour:
     - {x: -.225000009, y: -.396874994, z: 0}
     - {x: .228124991, y: -.396874994, z: 0}
     - {x: -.225000009, y: .396874994, z: 0}
-    - {x: .228124991, y: .396874994, z: -.00100000005}
+    - {x: .228124991, y: .396874994, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -77,16 +78,20 @@ MonoBehaviour:
     regionH: 0
     flipped: 0
     complexGeometry: 0
+    physicsEngine: 0
     colliderType: 0
     colliderVertices: []
     colliderIndicesFwd: 
     colliderIndicesBack: 
     colliderConvex: 0
     colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
   - name: lowerleg
     boundsData:
-    - {x: .00156250037, y: -.167187497, z: -.000500000024}
-    - {x: .0406250022, y: .334374994, z: .00100000005}
+    - {x: .00156250037, y: -.167187497, z: 0}
+    - {x: .0406250022, y: .334374994, z: 0}
     untrimmedBoundsData:
     - {x: .00156250037, y: -.167187497, z: 0}
     - {x: .0406250022, y: .334374994, z: 0}
@@ -95,7 +100,7 @@ MonoBehaviour:
     - {x: -.0187500007, y: -.334374994, z: 0}
     - {x: .0218750015, y: -.334374994, z: 0}
     - {x: -.0187500007, y: 0, z: 0}
-    - {x: .0218750015, y: 0, z: -.00100000005}
+    - {x: .0218750015, y: 0, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -114,16 +119,20 @@ MonoBehaviour:
     regionH: 0
     flipped: 0
     complexGeometry: 0
+    physicsEngine: 0
     colliderType: 0
     colliderVertices: []
     colliderIndicesFwd: 
     colliderIndicesBack: 
     colliderConvex: 0
     colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
   - name: mouth
     boundsData:
-    - {x: .0328125022, y: .090625003, z: -.000500000024}
-    - {x: .0656250045, y: .181250006, z: .00100000005}
+    - {x: .0328125022, y: .090625003, z: 0}
+    - {x: .0656250045, y: .181250006, z: 0}
     untrimmedBoundsData:
     - {x: .0328125022, y: .090625003, z: 0}
     - {x: .0656250045, y: .181250006, z: 0}
@@ -132,7 +141,7 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 0}
     - {x: .0656250045, y: 0, z: 0}
     - {x: 0, y: .181250006, z: 0}
-    - {x: .0656250045, y: .181250006, z: -.00100000005}
+    - {x: .0656250045, y: .181250006, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -151,16 +160,20 @@ MonoBehaviour:
     regionH: 0
     flipped: 1
     complexGeometry: 0
+    physicsEngine: 0
     colliderType: 0
     colliderVertices: []
     colliderIndicesFwd: 
     colliderIndicesBack: 
     colliderConvex: 0
     colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
   - name: upperleg
     boundsData:
-    - {x: 0, y: -.1640625, z: -.000500000024}
-    - {x: .0625, y: .328125, z: .00100000005}
+    - {x: 0, y: -.1640625, z: 0}
+    - {x: .0625, y: .328125, z: 0}
     untrimmedBoundsData:
     - {x: 0, y: -.1640625, z: 0}
     - {x: .0625, y: .328125, z: 0}
@@ -169,7 +182,7 @@ MonoBehaviour:
     - {x: -.03125, y: -.328125, z: 0}
     - {x: .03125, y: -.328125, z: 0}
     - {x: -.03125, y: 0, z: 0}
-    - {x: .03125, y: 0, z: -.00100000005}
+    - {x: .03125, y: 0, z: 0}
     normals: []
     tangents: []
     uvs:
@@ -188,25 +201,38 @@ MonoBehaviour:
     regionH: 0
     flipped: 0
     complexGeometry: 0
+    physicsEngine: 0
     colliderType: 0
     colliderVertices: []
     colliderIndicesFwd: 
     colliderIndicesBack: 
     colliderConvex: 0
     colliderSmoothSphereCollisions: 0
+    polygonCollider2D: []
+    edgeCollider2D: []
+    attachPoints: []
   premultipliedAlpha: 1
   material: {fileID: 0}
   materials:
   - {fileID: 2100000, guid: 8a2dd588da2bb8e44a189a90333944d7, type: 2}
   textures:
   - {fileID: 2800000, guid: 657c06b4a37f4bb45a24cc96727be5b8, type: 1}
+  pngTextures: []
+  textureFilterMode: 1
+  textureMipMaps: 0
   allowMultipleAtlases: 0
   spriteCollectionGUID: 1fe2f34d6bac2b440944f04ac87d9e8a
   spriteCollectionName: DemoSpiderSpriteCollection
+  assetName: 
+  loadable: 0
   invOrthoSize: 1
   halfTargetHeight: 320
-  buildKey: 2120657000
+  buildKey: 1976229422
   dataGuid: 822f1f9eedf119f4eaca33509ba7b549
+  managedSpriteCollection: 0
+  hasPlatformData: 0
+  spriteCollectionPlatforms: []
+  spriteCollectionPlatformGUIDs: []
 --- !u!1002 &11400001
 EditorExtensionImpl:
   serializedVersion: 6

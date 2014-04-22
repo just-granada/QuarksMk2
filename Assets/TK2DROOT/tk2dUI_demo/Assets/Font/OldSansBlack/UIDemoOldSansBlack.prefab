@@ -47,11 +47,18 @@ MonoBehaviour:
   useTk2dCamera: 0
   targetHeight: 640
   targetOrthoSize: 1
+  sizeDef:
+    type: 1
+    orthoSize: 10
+    pixelsPerMeter: 20
+    width: 960
+    height: 640
   gradientCount: 1
   manageMaterial: 0
   loadable: 0
   charPadX: 0
   data: {fileID: 11400000, guid: fb1b97eccf6db514999d1605baf017e5, type: 2}
+  version: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

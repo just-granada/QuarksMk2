@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour {
 	private void updateTimerDisplay()
 	{
 		float desiredAngle =  timerMaxAngle - gameTimer/maxTime *  timerAngleRange;
-		Debug.Log("timeleft: " + gameTimer);
 		float angleDelta = desiredAngle - timerDisplay.transform.rotation.z;
 		timerDisplay.transform.eulerAngles = new Vector3(0,0,desiredAngle);
 		timerTextDisplay.text = (Mathf.Round(gameTimer)).ToString();

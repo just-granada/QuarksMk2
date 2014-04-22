@@ -29,7 +29,7 @@ public static class tk2dUIItemBoundsHelper {
                     minMax[1] = Vector3.Max(minMax[1], pointRelativeToRoot);
                 }
             }
-            for (int i = 0; i < t.GetChildCount(); ++i) {
+            for (int i = 0; i < t.childCount; ++i) {
                 Transform child = t.GetChild(i);
 
                 if (!includeAllChildren && child.collider != null) {
@@ -79,18 +79,18 @@ public static class tk2dUIItemBoundsHelper {
 
         BoxCollider boxCollider = collider as BoxCollider;
         if (boxCollider != null) {
-            Undo.RegisterUndo(boxCollider, "Fit Collider");
-            b.extents = new Vector3(b.extents.x, b.extents.y, boxCollider.extents.z);
+            tk2dUndo.RecordObject(boxCollider, "Fit Collider");
+            b.size = new Vector3(b.size.x, b.size.y, boxCollider.size.z);
             b.center = new Vector3(b.center.x, b.center.y, boxCollider.center.z);
-            boxCollider.extents = b.extents;
+            boxCollider.size = b.size;
             boxCollider.center = b.center;
         }
 
         SphereCollider sphereCollider = collider as SphereCollider;
         if (sphereCollider != null) {
-            Undo.RegisterUndo(sphereCollider, "Fit Collider");
+            tk2dUndo.RecordObject(sphereCollider, "Fit Collider");
             sphereCollider.center = new Vector3(b.center.x, b.center.y, 0);
-            sphereCollider.radius = Mathf.Max( b.extents.x, b.extents.y );
+            sphereCollider.radius = 0.5f * Mathf.Max( b.size.x, b.size.y );
         }
     }
 
@@ -108,7 +108,11 @@ public static class tk2dUIItemBoundsHelper {
     		return;
     	}
 
+#if UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2
     	Undo.RegisterSceneUndo("Fix Selected Item Bounds");
+#else
+        int undoGroup = Undo.GetCurrentGroup();
+#endif
 
     	HashSet<tk2dUIItem> items = new HashSet<tk2dUIItem>();
     	foreach (GameObject go in Selection.gameObjects) {
@@ -121,6 +125,10 @@ public static class tk2dUIItemBoundsHelper {
     	foreach (tk2dUIItem item in items) {
             FixColliderBounds(item);
     	}
+
+#if !(UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2)
+        Undo.CollapseUndoOperations(undoGroup);
+#endif
     }
 }
 

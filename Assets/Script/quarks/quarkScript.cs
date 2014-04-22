@@ -41,7 +41,7 @@ public class quarkScript : MonoBehaviour {
 		quarkType = Mathf.CeilToInt(Random.value*5.99f);
 		sprite.spriteId = sprite.GetSpriteIdByName("Quark"+quarkType);
 		halo.color = haloColors[quarkType-1];
-		halo.gameObject.SetActiveRecursively(false);
+		halo.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -118,7 +118,7 @@ public class quarkScript : MonoBehaviour {
 		transitionStartingZ = transform.position.z;
 		transitionStartingScale = transform.localScale.x;
 		timeLeft = timeout;
-		halo.gameObject.SetActiveRecursively(activated);
+		halo.gameObject.SetActive(activated);
 		inTransition=true;
 	}
 	

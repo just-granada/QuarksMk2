@@ -11,6 +11,7 @@ public class GameOverManager : MonoBehaviour {
 	public tk2dTextMesh lastScore;
 	public tk2dTextMesh playAgain;
 	public tk2dTextMesh submitButton;
+	public tk2dTextMesh infoText;
 	public GameObject playerScoreContainer;
 	public tk2dUITextInput nameField;
 	
@@ -18,6 +19,7 @@ public class GameOverManager : MonoBehaviour {
 	private WWW scoreSubmitObject;
 	private List<WWW> activeCalls;
 	private static string scoreSubmitURL = "http://www.dantadigital.com/Quarks/submit.php?data=";
+	private static string FBsubmitURL = "https://graph.facebook.com/";
 	
 	private int sanitizeCounter=0;
 	
@@ -61,7 +63,7 @@ public class GameOverManager : MonoBehaviour {
 	
 	void Update()
 	{
-		List<WWW> readyCalls = new List<WWW>();
+		/*List<WWW> readyCalls = new List<WWW>();
 		if(activeCalls!=null && activeCalls.Count > 0)
 		{
 			foreach(WWW activeCall in activeCalls)
@@ -76,7 +78,7 @@ public class GameOverManager : MonoBehaviour {
 				activeCalls.Remove(activeCall);
 				manageResponse(activeCall);
 			}
-		}
+		}*/
 		
 		
 		if(sanitizeCounter==5)
@@ -122,21 +124,36 @@ public class GameOverManager : MonoBehaviour {
 	{
 		submitButton.text = "SENDING...";
 		submitButton.Commit();
-		nameField.gameObject.SetActiveRecursively(false);
+		nameField.gameObject.SetActive(false);
+
+		string constructedFBsubmitURL = FBsubmitURL + FB.UserId + "/scores?score=";
+		constructedFBsubmitURL += (int.Parse(PlayerPrefs.GetString("lastLocalScore")) + "&access_token=");
+		constructedFBsubmitURL += (FB.AccessToken);
 		
 		PlayerPrefs.SetString("lastPlayerName",nameField.Text);
 		JSONObject score = new JSONObject(JSONObject.Type.OBJECT);
 		score.AddField("name",nameField.Text);
 		score.AddField("score",int.Parse(PlayerPrefs.GetString("lastLocalScore")));
-		Debug.Log("string pre-encrypt: "+score.print());
-		string encryptedScore = encryptString(score.print(),2,false);
-		Debug.Log("string post-encrypt: " + encryptedScore);
-		string encodedScore = WWW.EscapeURL(encryptedScore);
-		Debug.Log("string post-encode: " + encodedScore);
-		scoreSubmitObject = new WWW(scoreSubmitURL+encodedScore);
-		if(activeCalls==null)
+		//Debug.Log("string pre-encrypt: "+score.print());
+		//string encryptedScore = encryptString(score.print(),2,false);
+		//Debug.Log("string post-encrypt: " + encryptedScore);
+		//string encodedScore = WWW.EscapeURL(encryptedScore);
+		//Debug.Log("string post-encode: " + encodedScore);
+		//scoreSubmitObject = new WWW(scoreSubmitURL+encodedScore);
+		infoText.text = "ATTEMPTING FB CALL";
+		infoText.Commit();
+		if (FB.IsLoggedIn)
+		{
+			infoText.text = "FB PUBLISH CALL";
+			infoText.Commit();
+			var query = new Dictionary<string, string>();
+			query["score"] = PlayerPrefs.GetString("lastLocalScore");
+			FB.API("/me/scores", Facebook.HttpMethod.POST, manageScorePostResponse, query);
+		}   
+
+		/*if(activeCalls==null)
 			activeCalls=new List<WWW>();
-		activeCalls.Add(scoreSubmitObject);
+		activeCalls.Add(scoreSubmitObject);*/
 	}
 	
 	private string encryptString(string text, byte displacement, bool decrypt)
@@ -221,7 +238,31 @@ public class GameOverManager : MonoBehaviour {
 		inTransition = true;
 		transitionStart = Time.time;
 		startingPosition = playerScoreContainer.transform.position.y;
-		nameField.gameObject.SetActiveRecursively(false);
-		submitButton.gameObject.SetActiveRecursively(false);
+		nameField.gameObject.SetActive(false);
+		submitButton.gameObject.SetActive(false);
+	}
+
+	private void manageScorePostResponse(FBResult result)
+	{
+		infoText.text = "RESULT" + result.Text;
+		infoText.Commit();
+		readScores ();
+	}
+
+	private void readScores()
+	{
+		infoText.text = "FB SCORE CALL";
+		infoText.Commit();
+		var query = new Dictionary<string, string>();
+		query["score"] = PlayerPrefs.GetString("lastLocalScore");
+		Debug.Log (query ["score"]);
+		FB.API("/app/scores", Facebook.HttpMethod.GET, manageScoreReadResponse, query);
+	}
+
+	private void manageScoreReadResponse(FBResult result)
+	{
+		infoText.text = "RESULT" + result.Text;
+		infoText.Commit();
 	}
 }
+

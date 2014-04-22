@@ -39,7 +39,7 @@ public class ObjectTouch : MonoBehaviour {
 	}
 	
 	void Start(){
-		cam = Camera.mainCamera;
+		cam = Camera.main;
 	}
 	
 	void FixedUpdate(){

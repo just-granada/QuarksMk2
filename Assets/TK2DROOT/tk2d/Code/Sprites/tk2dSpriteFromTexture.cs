@@ -8,7 +8,7 @@ public class tk2dSpriteFromTexture : MonoBehaviour {
 	public Texture texture = null;
 	public tk2dSpriteCollectionSize spriteCollectionSize = new tk2dSpriteCollectionSize();
 	public tk2dBaseSprite.Anchor anchor = tk2dBaseSprite.Anchor.MiddleCenter;
-	[SerializeField] tk2dSpriteCollectionData spriteCollection;
+	tk2dSpriteCollectionData spriteCollection;
 
 	tk2dBaseSprite _sprite;
 	tk2dBaseSprite Sprite {
@@ -33,11 +33,7 @@ public class tk2dSpriteFromTexture : MonoBehaviour {
 	}
 
 	void OnDestroy() {
-		if (spriteCollection != null) {
-			if (spriteCollection.spriteDefinitions[0].material != null) {
-				DestroyImmediate( spriteCollection.spriteDefinitions[0].material );
-			}
-		}
+		DestroyInternal();
 		if (renderer != null) {
 			renderer.material = null;
 		}
@@ -51,9 +47,15 @@ public class tk2dSpriteFromTexture : MonoBehaviour {
 			this.texture = texture;
 			this.anchor = anchor;
 
+			GameObject go = new GameObject("tk2dSpriteFromTexture - " + texture.name);
+			go.transform.localPosition = Vector3.zero;
+			go.transform.localRotation = Quaternion.identity;
+			go.transform.localScale = Vector3.one;
+			go.hideFlags = HideFlags.DontSave;
+			
 			Vector2 anchorPos = tk2dSpriteGeomGen.GetAnchorOffset( anchor, texture.width, texture.height );
 			spriteCollection = tk2dRuntime.SpriteCollectionGenerator.CreateFromTexture(
-				gameObject, 
+				go, 
 				texture, 
 				spriteCollectionSize,
 				new Vector2(texture.width, texture.height),
@@ -62,9 +64,6 @@ public class tk2dSpriteFromTexture : MonoBehaviour {
 				null,
 				new Vector2[] { anchorPos },
 				new bool[] { false } );
-
-			// don't want to save or see this
-			spriteCollection.hideFlags = HideFlags.HideInInspector;
 
 			string objName = "SpriteFromTexture " + texture.name;
 			spriteCollection.spriteCollectionName = objName;
@@ -89,7 +88,7 @@ public class tk2dSpriteFromTexture : MonoBehaviour {
 			if (spriteCollection.spriteDefinitions[0].material != null) {
 				DestroyImmediate( spriteCollection.spriteDefinitions[0].material );
 			}
-			DestroyImmediate( spriteCollection );
+			DestroyImmediate( spriteCollection.gameObject );
 			spriteCollection = null;
 		}
 	}

@@ -32,13 +32,12 @@ public class tk2dUIAudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
             if (instance != this)
             {
-                Destroy(gameObject);
+                Destroy(this); // remove self, but don't destroy the gameobject its attached to. i.e. don't kill the host object.
                 return;
             }
         }
@@ -63,6 +62,6 @@ public class tk2dUIAudioManager : MonoBehaviour
     /// </summary>
     public void Play(AudioClip clip)
     {
-        audioSrc.PlayOneShot(clip);
+        audioSrc.PlayOneShot(clip, AudioListener.volume);
     }
 }

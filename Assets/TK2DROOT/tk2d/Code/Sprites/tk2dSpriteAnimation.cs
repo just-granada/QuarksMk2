@@ -77,7 +77,7 @@ public class tk2dSpriteAnimationClip
 	/// <summary>
 	/// Array of frames
 	/// </summary>
-	public tk2dSpriteAnimationFrame[] frames = null;
+	public tk2dSpriteAnimationFrame[] frames = new tk2dSpriteAnimationFrame[0];
 	
 	/// <summary>
 	/// FPS of clip
@@ -149,6 +149,10 @@ public class tk2dSpriteAnimationClip
 		CopyFrom( source );
 	}
 
+	/// <summary>
+	/// Copies the source animation clip into the current one.
+	/// All frames are duplicated.
+	/// </summary>
 	public void CopyFrom(tk2dSpriteAnimationClip source)
 	{
 		name = source.name;
@@ -182,6 +186,9 @@ public class tk2dSpriteAnimationClip
 		}
 	}
 
+	/// <summary>
+	/// Clears the clip, removes all frames
+	/// </summary>
 	public void Clear()
 	{
 		name = "";
@@ -191,11 +198,17 @@ public class tk2dSpriteAnimationClip
 		wrapMode = WrapMode.Loop;
 	}
 
+	/// <summary>
+	/// Is the clip empty?
+	/// </summary>
 	public bool Empty
 	{
 		get { return name.Length == 0 || frames == null || frames.Length == 0; }
 	}
 
+	/// <summary>
+	/// Gets the tk2dSpriteAnimationFrame for a particular frame
+	/// </summary>
 	public tk2dSpriteAnimationFrame GetFrame(int frame) {
 		return frames[frame];
 	}
